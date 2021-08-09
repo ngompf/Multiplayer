@@ -1,5 +1,4 @@
 package game;
-import java.awt.Canvas;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
@@ -12,7 +11,7 @@ public class GameCanvas extends JPanel{
 	}
 	
     public void paintComponent(Graphics g) {
-    	ArrayList<GameObject> a = new ArrayList<GameObject>(gameManager.gameObjects);
+    	ArrayList<GameObject> a = new ArrayList<GameObject>(gameManager.gameObjectMap.values());
         for (GameObject o : a) {
         	o.update();
         	o.draw(g);

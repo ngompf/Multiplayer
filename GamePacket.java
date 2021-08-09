@@ -12,6 +12,7 @@ import java.net.SocketAddress;
 import java.util.ArrayList;
 
 public class GamePacket implements Serializable{
+	
 	public static final int BYTE_ARRAY_LENGTH = 512;
 	
 	public static final byte CONNECT = 0;
@@ -80,6 +81,10 @@ public class GamePacket implements Serializable{
 		return new GamePacket(gamePacket.userName, gamePacket.packetId++, NO_ACK, gamePacket.socketAddress, gameObjects);
 	}
 
+	public static GamePacket broadcastPacket(ArrayList<GameObject> objects) {
+		return new GamePacket("Server", -1, NO_ACK, null, objects);
+	}
+
 	public static DatagramPacket pack(GamePacket gp){
 		byte[] byteArray = null;
 		try {
@@ -112,4 +117,6 @@ public class GamePacket implements Serializable{
 		gp.socketAddress = p.getSocketAddress();
 		return gp;
 	}
+
+	
 }

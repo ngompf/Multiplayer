@@ -72,38 +72,39 @@ class KeyBoardAction extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		GameWindow gameWindow = gameManager.gameWindow;
+		GameObject player = gameManager.player;
 		KeyBoardHandler keyBoardHandler = gameManager.keyBoardHandler;
 		if(gameWindow.currentPanel() == gameWindow.gamePanel) {
 			if(key == keyBoardHandler.pauseKey) {
 				gameWindow.changePanel(gameWindow.pauseMenuPanel);
 			}
 			
-			if(key == keyBoardHandler.upKey) {
-				gameManager.player.ySpeed = - gameManager.player.speed;
+			else if(key == keyBoardHandler.upKey) {
+				player.trimIn();
 			}
-			if(key == keyBoardHandler.upKeyRelease) {
-				gameManager.player.ySpeed = 0;
+			else if(key == keyBoardHandler.upKeyRelease) {
+				player.stopTrim();
 			}
 			
-			if(key == keyBoardHandler.downKey) {
-				gameManager.player.ySpeed = gameManager.player.speed;
+			else if(key == keyBoardHandler.downKey) {
+				player.trimOut();
 			}
 			if(key == keyBoardHandler.downKeyRelease) {
-				gameManager.player.ySpeed = 0;
+				player.stopTrim();
 			}
 			
-			if(key == keyBoardHandler.leftKey) {
-				gameManager.player.xSpeed = -gameManager.player.speed;
+			else if(key == keyBoardHandler.leftKey) {
+				player.rotateLeft();
 			}
-			if(key == keyBoardHandler.leftKeyRelease) {
-				gameManager.player.xSpeed = 0;
+			else if(key == keyBoardHandler.leftKeyRelease) {
+				player.stopRotation();
 			}
 			
-			if(key == keyBoardHandler.rightKey) {
-				gameManager.player.xSpeed = gameManager.player.speed;
+			else if(key == keyBoardHandler.rightKey) {
+				player.rotateRight();
 			}
-			if(key == keyBoardHandler.rightKeyRelease) {
-				gameManager.player.xSpeed = 0;
+			else if(key == keyBoardHandler.rightKeyRelease) {
+				player.stopRotation();
 			}
 		}
 	}
